@@ -17,7 +17,7 @@ def getOtp():
         msg = struct.pack(">Q", interval)
         digested = bytearray(hmac.new(decoded, msg, hashlib.sha1).digest())
         offset = digested[19] & 15
-        otp = str((struct.unpack(">I", digested[offset:offset + 4])[0] & 0x7fffffff) % 1000000)
+        otp = str((struct.unpack(">I", digested[offset:offset + 4])[0] & 0x7fffffff) % 10**6)
         check_length(otp)
 
 def format_key(key):
